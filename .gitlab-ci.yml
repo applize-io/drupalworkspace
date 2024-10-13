@@ -1,0 +1,45 @@
+stages:
+  - prepare
+  - deploy
+
+variables:
+  DOCKER_IMAGE: registry.example.com/app/backend:latest
+
+build:
+  stage: prepare
+  image: docker:latest
+  only:
+    - main
+  services:
+    - name: docker:dind
+  script:
+    - docker build --cache-from=$DOCKER_IMAGE -t $DOCKER_IMAGE -f config/prod/Dockerfile .
+
+push:
+  stage: prepare
+  image: docker:latest
+  only:
+    - main
+  services:
+    - docker:dind
+  before_script:
+    - apk add --no-cache make
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker push $DOCKER_IMAGE
+
+deploy-dev:
+  stage: deploy
+  image: alpine
+  environment:
+    name: development
+    url: https://backend.example.com
+  only:
+    - main
+  before_script:
+    - apk add --no-cache openssh
+    - mkdir -p ~/.ssh
+    - ssh-keyscan -t rsa $DEV_SERVER_IP >> ~/.ssh/known_hosts
+    - chmod 600 $DEV_PRIVATE_KEY
+  script:
+    - ssh -i $DEV_PRIVATE_KEY $DEV_USER@$DEV_SERVER_IP "cd $DEV_APP_PATH && make reset && make drush config:import"

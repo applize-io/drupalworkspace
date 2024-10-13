@@ -1,0 +1,32 @@
+name: Build and Test Drupal on FrankenPHP
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build and Start Docker Containers
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y make docker-compose
+        make up
+
+    - name: Wait for services to be ready
+      run: sleep 30
+
+    - name: Stop and Remove Docker Containers
+      run: make prune

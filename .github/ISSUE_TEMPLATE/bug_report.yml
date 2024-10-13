@@ -1,0 +1,58 @@
+name: "Bug Report"
+description: "Report a bug to improve the drupal project"
+title: "[BUG] Clear and descriptive title"
+labels: 
+  - bug
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping us improve drupalWorkSpace by reporting a bug. Please provide as many details as possible to enable us to resolve the issue quickly.
+
+  - type: input
+    id: title
+    attributes:
+      label: "Briefly describe the bug"
+      placeholder: "Example: Homepage loading error"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Describe the encountered problem"
+      description: "Explain what you were doing when the issue occurred, what you expected, and what actually happened."
+      placeholder: "Steps to reproduce the issue..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Environment"
+      description: "Provide details about the environment (operating system, browser, PHP version, etc.)."
+      placeholder: "Example: Windows 10, PHP 8.3, Drupal 10.0"
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs and error messages (optional)"
+      description: "Add any relevant trace or log to help diagnose the bug."
+      placeholder: "Example: PHP error log, Caddy log, etc."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Bug priority"
+      description: "Indicate the impact of the bug on the project."
+      options:
+        - "Low"
+        - "Medium"
+        - "High"
+    validations:
+      required: true

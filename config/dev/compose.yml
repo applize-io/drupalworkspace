@@ -1,0 +1,52 @@
+services:
+  drupal:
+    build:
+      context: ../../
+      dockerfile: config/dev/Dockerfile
+    container_name: "${PROJECT_NAME}_dev_drupal"
+    ports:
+      - "786:80"
+      - "787:443"
+      - "788:443/udp" 
+    volumes:
+      - ../../drupal:/opt/drupalx:cached
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: $DB_HOST
+      DB_PORT: $DB_PORT
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_DRIVER: $DB_DRIVER
+      DRUPAL_HASH_SALT: $DRUPAL_HASH_SALT
+      BACKEND_URL: $BACKEND_URL
+      FRONTEND_URL: $FRONTEND_URL
+    restart: always
+    labels:
+      com.docker.compose.project: ${PROJECT_NAME}
+
+  postgres:
+    image: "postgres:16"
+    container_name: "${PROJECT_NAME}_dev_postgres"
+    environment:
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+    labels:
+      com.docker.compose.project: ${PROJECT_NAME}
+
+  adminer:
+    image: adminer
+    container_name: "${PROJECT_NAME}_dev_adminer"
+    restart: always
+    ports:
+      - 789:8080
+    labels:
+      com.docker.compose.project: ${PROJECT_NAME}
+
+
+volumes:
+  postgres_data:

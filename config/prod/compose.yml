@@ -1,0 +1,23 @@
+services:
+  drupal:
+    image: "${DOCKER_IMAGE}"
+    container_name: "${PROJECT_NAME}_prod_drupal"
+    ports:
+      - "786:80"
+      - "787:443"
+      - "787:443/udp" 
+    volumes:
+      - ../../files:/opt/drupalx/web/sites/default/files
+    environment:
+      DB_HOST: $DB_HOST
+      DB_PORT: $DB_PORT
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_DRIVER: $DB_DRIVER
+      DRUPAL_HASH_SALT: ${DRUPAL_HASH_SALT}
+      BACKEND_URL: $BACKEND_URL
+      FRONTEND_URL: $FRONTEND_URL
+    restart: always
+    labels:
+      com.docker.compose.project: ${PROJECT_NAME}

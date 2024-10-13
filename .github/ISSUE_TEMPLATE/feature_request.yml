@@ -1,0 +1,37 @@
+name: "Feature Request"
+description: "Propose a new feature for drupalWorkSpace"
+title: "[FEATURE] Clear and descriptive title"
+labels: 
+  - enhancement
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do you have an idea to improve drupalWorkSpace? Describe it below so we can review it.
+
+  - type: input
+    id: title
+    attributes:
+      label: "Briefly describe the desired feature"
+      placeholder: "Example: Adding a user management module"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Detailed description of the feature"
+      description: "Explain how this feature is useful for the project."
+      placeholder: "Example: This feature would allow..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "Impact on the project"
+      description: "Explain how this feature will improve drupalWorkSpace."
+      placeholder: "Example: Improving user experience..."
+    validations:
+      required: false
