@@ -308,7 +308,7 @@ Removes containers and volumes for the current environment.
 make prune
 ```
 
-*8. make logs*
+**8. make logs**
 Displays logs of the running containers.
 
 ```bash
@@ -373,11 +373,11 @@ make info
 
 Example output when running 'make info'
 
-Environment: dev
-Project Name: drupalWorkSpace
-Compose file: config/dev/compose.yml
-Dockerfile: config/dev/Dockerfile
-Env file: config/dev/.env
+Environment: dev   
+Project Name: drupalWorkSpace   
+Compose file: config/dev/compose.yml   
+Dockerfile: config/dev/Dockerfile   
+Env file: config/dev/.env   
 
 **16. make help**
 Displays a list of all available targets in the `Makefile`, with a brief description.
