@@ -3,13 +3,6 @@
         "main"
     ],
     "repositoryUrl": "https://github.com/applize-io/drupalworkspace",
-    "plugins": [
-        "@semantic-release/commit-analyzer",
-        "@semantic-release/release-notes-generator",
-        "@semantic-release/changelog",
-        "@semantic-release/github",
-        "@semantic-release/git"
-    ],
     "preset": "angular",
     "tagFormat": "v${version}",
     "plugins": [
