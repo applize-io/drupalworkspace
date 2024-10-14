@@ -1,95 +1,142 @@
 # Contributing to the drupalWorkSpace Project
 
-Thank you for your interest in contributing to drupalWorkSpace! This guide explains how you can participate in the project and the best practices to follow.
+Thank you for your interest in contributing to **drupalWorkSpace**! This guide outlines how to participate in the project and the best practices for ensuring high-quality contributions.
 
 ## Table of Contents
 
-- How to Get Started
-- How to Contribute
-- Coding Standards
-- Pull Request Process and Testing
-- Project Branches
+1. [How to Get Started](#how-to-get-started)
+2. [How to Contribute](#how-to-contribute)
+3. [Coding Standards](#coding-standards)
+4. [Pull Request Process and Testing](#pull-request-process-and-testing)
+5. [Project Branches](#project-branches)
+6. [Conventional Commits](#conventional-commits)
+
+---
 
 ## How to Get Started
 
-1. **Clone the project**: Start by forking this repository to your GitHub account, then clone it locally:
+1. **Fork the repository**: Start by forking this repository into your GitHub account and then clone it locally:
 
    ```bash
    git clone https://github.com/your-username/drupalworkspace.git
    cd drupalworkspace
+   ```
 
-2. Create a new branch for your contribution:
+2. **Create a new branch**: For your contribution, create a new branch:
    ```bash
    git checkout -b feature/contribution
+   ```
 
-3. Install the necessary dependencies: Make sure Docker and Docker Compose are installed on your machine. You can then start the environment:
+3. **Set up the environment**: Ensure that Docker and Docker Compose are installed on your machine. You can then start the environment:
    ```bash
-   make up 
-4. Then create the Drupal folder:
+   make up
+   ```
+
+4. **Create the Drupal folder**:
    ```bash
-   make project 
-Make your changes: Whether it's adding a feature, fixing a bug, or improving the documentation.
+   make project
+   ```
 
-### How to Contribute
-If you want to propose a new feature, please follow these steps:
-- Open an issue: Create an issue describing the feature you want to add. Be as detailed as possible.
-- Wait for approval: A discussion will take place in the issue to validate the relevance of the feature before you start developing it.
-- Implement the feature once approval is received.
+5. **Make your changes**: Whether you're adding a feature, fixing a bug, or improving documentation, make changes within your feature branch.
 
-Reporting a Problem
-If you find a bug or an issue in the project, please follow these steps:
-- Check existing issues to see if the problem has already been reported.
-- Create a new issue with a clear description of the problem:
-    What you expected
-    What actually happened
-    Steps to reproduce the issue
-    Screenshot or Docker logs if necessary
-#### Contribution Rules
-To keep the project organized and clean, we ask you to follow these rules:
-Coding Standards
-- Respect the project structure: Do not move or rename files without a valid reason.
-- Respect the coding style: Follow the coding conventions already in place in the project. If you modify code, try to maintain the same logic and structure.
-- Document changes: If you introduce a new feature or modify a behavior, update the documentation accordingly (e.g., README.md).
-##### Pull Request Process and Testing
-- Create a pull request (PR) once you have completed your changes: Go to the page of your fork, click on the "New Pull Request" button.
-- Description: Provide a detailed description of what the PR does and why it's useful.
-- Testing: Make sure your changes pass automated tests.
-- Review: Your PR will be reviewed, and comments may be made. Be sure to respond to these comments or make changes as necessary.
-- Merge: Once approved, your PR will be merged into the main repository.
-- Running Tests
-We use a testing system to ensure the stability of the project. Make sure all tests pass before submitting a pull request. To run the tests, use the test files.
+---
 
-###### Project Branches
-We follow a simplified Git Flow approach for branch management.
+## How to Contribute
 
-main: The main development branch. All new features and bug fixes should be based on this branch. Once tested and validated, they will be merged.
+### Proposing a New Feature
 
-feature/[feature-name]: Each new feature or improvement should be developed in a dedicated branch created from main. The branch name should be descriptive (e.g., feature/add-ssl-support).
+- **Open an issue**: Describe the feature you want to add by creating an issue. Be as detailed as possible.
+- **Wait for approval**: A discussion will take place in the issue to validate the relevance of the feature before you start developing it.
+- **Implement the feature**: Once approved, you can start implementing it.
 
-bugfix/[bug-name]: If you are working on fixing a bug, create a branch from main with the prefix bugfix/.
+### Reporting a Problem
 
-When your contribution is ready, submit a Pull Request (PR) to the main branch.
+- **Check existing issues**: Before creating a new issue, check if the problem has already been reported.
+- **Create a new issue**: If the problem hasn’t been reported, create an issue with a clear description of:
+  - What you expected.
+  - What actually happened.
+  - Steps to reproduce the issue.
+  - Screenshots or Docker logs (if applicable).
 
+---
 
-Thank you again for your involvement and contribution to the Docker drupalWorkSpace. Together, we can make this project an even more powerful and accessible tool for the community.
+## Coding Standards
 
-###### Conventional Commits
-To ensure clear and uniform commit messages, we follow the Conventional Commits convention.Each commit message should follow a clear structure based on the type of change made. Here are the main types and their uses:
-- feat (Feature): Used to introduce a new feature.
+### Contribution Guidelines
+
+To keep the project organized and consistent, follow these rules:
+
+1. **Respect the project structure**: Do not move or rename files unless necessary.
+2. **Follow the coding style**: Stick to the coding conventions already in place. Maintain the same logic and structure if you're modifying code.
+3. **Document changes**: If you add a new feature or modify existing behavior, update the relevant documentation (e.g., `README.md`).
+
+---
+
+## Pull Request Process and Testing
+
+1. **Create a Pull Request (PR)**: Once your changes are complete, submit a PR from your fork by clicking the "New Pull Request" button.
+
+2. **Provide a description**: Include a detailed description of the PR and explain why it’s useful.
+
+3. **Ensure tests pass**: Before submitting the PR, make sure your changes pass all automated tests.
+
+4. **Review and feedback**: Your PR will be reviewed, and feedback may be given. Address any comments or make changes as needed.
+
+5. **Merging**: Once approved, your PR will be merged into the main repository.
+
+### Running Tests
+
+The project uses automated testing to ensure stability. Please ensure that all tests pass before submitting a PR. You can run tests locally using the test files provided.
+
+---
+
+## Project Branches
+
+We follow a **Git Flow** approach for branch management:
+
+- **`main`**: This is the stable branch containing production-ready code. No direct commits should be made to `main`.
+  
+- **`develop`**: The main development branch. All new features and bug fixes should be based on `develop`. After testing and validation, they will be merged into `main` when preparing a new release.
+  
+- **`feature/[feature-name]`**: Each new feature or improvement should be developed in a dedicated branch created from `develop`. The branch name should be descriptive (e.g., `feature/add-ssl-support`).
+
+- **`bugfix/[bug-name]`**: If you're working on fixing a bug, create a branch from `develop` with the prefix `bugfix/`.
+
+- **hotfix/[hotfix-name]**: Hotfix branches are created from `main` to quickly address critical bugs in production (e.g., `hotfix/fix-critical-issue`). After resolving the issue, the hotfix must be merged into both `main` and `develop` to ensure continuity.
+
+When your contribution is ready, submit a **Pull Request (PR)** to the `develop` branch. Once tested and approved, it will be merged into `main` during the release process.
+
+---
+
+## Conventional Commits
+
+To ensure clear and consistent commit messages, we follow the **Conventional Commits** specification. Each commit message should have a defined structure based on the type of change being made. Here are the main types and their use:
+
+- **feat (Feature)**: Use when introducing a new feature.
   ```bash
   git commit -m "feat: Add advanced search functionality"
-- docs (Documentation): Used for changes related to documentation, such as adding or modifying comments in the code.
-  ```bash
-  git commit -m "docs: Update documentation"
+  ```
 
-- style (Style): Used for changes that don't affect the logic of the code, like formatting, spaces, or indentation adjustments.
+- **docs (Documentation)**: Use for changes related to documentation.
   ```bash
-  git commit -m "style: Reorganize spaces and indentation"
+  git commit -m "docs: Update README with installation instructions"
+  ```
 
-- perf (Performance): Used for changes that improve code performance.
+- **style (Style)**: Use for changes that don’t affect the code’s logic, like formatting, whitespace, or indentation adjustments.
   ```bash
-  git commit -m "perf: Add cache mecanism"
+  git commit -m "style: Fix spacing in function definitions"
+  ```
 
-- test (Tests): Used for adding or modifying tests.
+- **perf (Performance)**: Use for changes that improve code performance.
   ```bash
-  git commit -m "test: Add form validation tests"
+  git commit -m "perf: Optimize query handling"
+  ```
+
+- **test (Tests)**: Use for adding or modifying tests.
+  ```bash
+  git commit -m "test: Add tests for form validation"
+  ```
+
+---
+
+Thank you again for your participation and contribution to the **drupalWorkSpace** project. Together, we can make this tool even more powerful and accessible to the community.
