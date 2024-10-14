@@ -77,6 +77,10 @@ Before you begin, make sure you have installed the following tools on your machi
 
 ## Installation
 
+By default, when you install drupalWorkSpace, you are automatically in development mode. You can use it for an existing project or to initialize a new one.
+
+### Steps to Follow
+
 1. **Clone the repository to your local machine:**
 
    ```bash
@@ -90,7 +94,7 @@ Before you begin, make sure you have installed the following tools on your machi
    make up
    ```
 
-2. **Display logs from all services:**
+2. **Display logs from all services (optional):**
 
    ```bash  
    make logs
@@ -128,7 +132,7 @@ Before you begin, make sure you have installed the following tools on your machi
    Make sure you are in development mode by checking the `.env` file at the root of the project and confirming that `ENVIRONMENT=dev`. The development mode uses the files present in `config/dev` to launch the project. Feel free to make adjustments if necessary.
 
 6. **Access Your Application:**  
-   Open your browser and type [http://localhost:786](http://localhost:786) to see your running Drupal instance. You should see the Drupal installation interface. Proceed with the installation as usual.
+   Open your browser and type `http://localhost:786` to see your running Drupal instance. You should see the Drupal installation interface. Proceed with the installation as usual.
 
 ## Test the Production Version Before Deployment
 
@@ -281,7 +285,7 @@ make up
 ```
 
 **4. make project**
-Initialize a new Drupal installation in its latest version within the drupal/ directory located at the root of the project.
+Initialize a new Drupal installation in its latest version within the `drupal/` directory located at the root of the project.
 
 ```bash
 make project
@@ -371,7 +375,7 @@ Displays the current environment variables.
 make info
 ```
 
-Example output when running 'make info'
+Example output when running `make info` 
 
 Environment: dev   
 Project Name: drupalWorkSpace   

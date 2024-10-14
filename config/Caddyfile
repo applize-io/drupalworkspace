@@ -1,3 +1,7 @@
+# Caddyfile
+# Location: /config/Caddyfile
+# Source: Based on the Dunglas FrankenPHP project configuration
+# https://github.com/dunglas/frankenphp
 # Adapted from https://caddy.community/t/caddyfile-for-drupal-10/21607/5
 {
 	{$CADDY_GLOBAL_OPTIONS}
