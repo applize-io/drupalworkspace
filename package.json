@@ -1,0 +1,14 @@
+{
+  "name": "drupalworkspace",
+  "version": "1.0.0",
+  "description": "**drupalWorkSpace** is a containerized development environment designed to facilitate the deployment of a Drupal instance. This project utilizes modern tools such as Docker, Caddy, PostgreSQL, GitLab, and FrankenPHP. The goal is to simplify the installation and management of Drupal while providing a workflow for continuous integration and deployment via GitLab.",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
