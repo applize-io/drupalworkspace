@@ -88,26 +88,33 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    cd drupalworkspace
    ```
 
-2. **Build the Docker containers with Docker Compose:**
+2. **Check Your Development Mode:**  
+   Make sure you are in development mode by checking the `.env` file at the root of the project and confirming that `ENVIRONMENT=dev`. The development mode uses the files present in `config/dev` to launch the project. Feel free to make adjustments if necessary.   
+
+   ```bash
+   make info
+   ``` 
+
+3. **Build the Docker containers with Docker Compose:**
 
    ```bash  
    make up
    ```
 
-2. **Display logs from all services (optional):**
+4. **Display logs from all services (optional):**
 
    ```bash  
    make logs
    ```
 
-3. **Initialize a Drupal project:**  
+5. **Initialize a Drupal project:**  
    Now that the container is running, you can initialize a Drupal project to be ready to work. If you want to start a new Drupal project, use the following command to create a Drupal project in its latest version (11 at the time of writing):
 
    ```bash  
    make project
    ```
 
-4. **For an existing Drupal project:**  
+6. **For an existing Drupal project:**  
    Place it directly in the `drupal` folder without executing the `make project` command. Then, adjust the default configuration in `web/sites/default/settings.php` with the contents of the `config/settings` file from **drupalWorkSpace**.
 
    ```php
@@ -128,14 +135,14 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    $config['system.logging']['error_level'] = getenv('ERROR_LEVEL');
    ```
 
-5. **Install Project Dependencies for an Existing Site (If Applicable):**  
+7. **Install Project Dependencies for an Existing Site (If Applicable):**  
    Run the following command to install the project dependencies:
 
    ```bash
    make drupal composer install
    ```
 
-6. **Import Configuration for an Existing Site (If Applicable):**  
+8. **Import Configuration for an Existing Site (If Applicable):**  
    If you're working with an existing Drupal site, you may need to import the configuration after installation. First, ensure that the configuration paths in `config/dev/.env` are properly adapted. Also, make sure you have exported your configuration before placing your project in the `drupal/` directory.
 
    To import the configuration, run the following command:
@@ -144,10 +151,7 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    make drush config:import
    ``` 
 
-7. **Check Your Development Mode:**  
-   Make sure you are in development mode by checking the `.env` file at the root of the project and confirming that `ENVIRONMENT=dev`. The development mode uses the files present in `config/dev` to launch the project. Feel free to make adjustments if necessary.
-
-8. **Access Your Application:**  
+9. **Access Your Application:**  
    Open your browser and type `http://localhost:786` to see your running Drupal instance. You should see the Drupal installation interface. Proceed with the installation as usual.
 
 ## Test the Production Version Before Deployment
