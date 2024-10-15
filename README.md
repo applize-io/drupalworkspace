@@ -127,6 +127,11 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
    $config['system.logging']['error_level'] = getenv('ERROR_LEVEL');
    ```
+   
+   If necessary, run the following command to install the project dependencies:
+   ```bash  
+   make drupal composer install
+   ```
 
 5. **Check Your Development Mode:**  
    Make sure you are in development mode by checking the `.env` file at the root of the project and confirming that `ENVIRONMENT=dev`. The development mode uses the files present in `config/dev` to launch the project. Feel free to make adjustments if necessary.
