@@ -107,9 +107,6 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    make logs
    ```
 
-Voici une version améliorée de votre texte, en mettant l'accent sur la clarté et la fluidité :
-
-
 #### New Project
 
 1. **Initialize a Drupal Project:**  
