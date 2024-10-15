@@ -107,15 +107,36 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    make logs
    ```
 
-5. **Initialize a Drupal project:**  
-   Now that the container is running, you can initialize a Drupal project to be ready to work. If you want to start a new Drupal project, use the following command to create a Drupal project in its latest version (11 at the time of writing):
+Voici une version améliorée de votre texte, en mettant l'accent sur la clarté et la fluidité :
+
+
+#### New Project
+
+1. **Initialize a Drupal Project:**  
+   With the container running, you can initialize a new Drupal project. To create a new Drupal project using the latest version (11 at the time of writing), run the following command:
 
    ```bash  
    make project
    ```
 
-6. **For an existing Drupal project:**  
-   Place it directly in the `drupal` folder without executing the `make project` command. Then, adjust the default configuration in `web/sites/default/settings.php` with the contents of the `config/settings` file from **drupalWorkSpace**.
+2. **Access Your Application:**  
+   Open your browser and navigate to `http://localhost:786` to view your running Drupal instance. You should see the Drupal installation interface. Proceed with the installation as usual.
+
+#### Existing Project
+
+1. **Export Configurations for Existing Project:**  
+   Ensure that Drush is installed as a module within your existing Drupal project. Then, execute the following commands to export configurations from your development Drupal instance and display the UUID of your development site:
+
+   ```bash
+   make drush config:export
+   make drush config:get "system.site" uuid
+   ```
+
+   - **Note the displayed UUID for future reference.**
+
+
+6. **Place the Project in the `drupal/` Directory of `drupalWorkSpace`:**  
+   Move your project directly into the `drupal` directory. Next, adjust the default configuration in `web/sites/default/settings.php` using the contents of the `config/settings` file from **drupalWorkSpace**. Also, update the environment variables in `config/dev/.env`, as these are utilized by `settings.php`:
 
    ```php
    $databases['default']['default'] = array (
@@ -135,24 +156,35 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    $config['system.logging']['error_level'] = getenv('ERROR_LEVEL');
    ```
 
-7. **Install Project Dependencies for an Existing Site (If Applicable):**  
-   Run the following command to install the project dependencies:
+7. **Install Project Dependencies (Optional):**  
+   If needed, run the following command to install the project dependencies:
 
    ```bash
    make drupal composer install
    ```
 
-8. **Import Configuration for an Existing Site (If Applicable):**  
-   If you're working with an existing Drupal site, you may need to import the configuration after installation. First, ensure that the configuration paths in `config/dev/.env` are properly adapted. Also, make sure you have exported your configuration before placing your project in the `drupal/` directory.
+9. **Access Your Application:**  
+   Open your browser and navigate to `http://localhost:786` to see your running Drupal instance. You should see the Drupal installation interface. Proceed with the installation as usual.
+
+8. **Update the Site ID:**  
+   Once Drupal is installed, return to the terminal and run the following command to update the site ID in the online database:
+
+   ```bash
+   make drush cset system.site uuid <copied_code>
+   ```
+
+8. **Import Configuration:**  
+   After installation, you may need to import the configuration. Ensure that the configuration paths in `config/dev/.env` are properly set. Additionally, confirm that you have exported your configuration before placing your project in the `drupal/` directory.
 
    To import the configuration, run the following command:
 
    ```bash
    make drush config:import
-   ``` 
+   ```
 
-9. **Access Your Application:**  
-   Open your browser and type `http://localhost:786` to see your running Drupal instance. You should see the Drupal installation interface. Proceed with the installation as usual.
+10. **Verify the Online Site:**  
+    Navigate back to `https://localhost:786` to verify that the online site contains all the features implemented in the development version.
+
 
 ## Test the Production Version Before Deployment
 
