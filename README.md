@@ -128,8 +128,8 @@ By default, when you install drupalWorkSpace, you are automatically in developme
    $config['system.logging']['error_level'] = getenv('ERROR_LEVEL');
    ```
 
-5. **Install Project Dependencies:**  
-   If necessary, run the following command to install the project dependencies:
+5. **Install Project Dependencies for an Existing Site (If Applicable):**  
+   Run the following command to install the project dependencies:
 
    ```bash
    make drupal composer install
