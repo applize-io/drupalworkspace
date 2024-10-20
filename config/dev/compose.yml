@@ -5,6 +5,9 @@ services:
     build:
       context: ../../
       dockerfile: config/dev/Dockerfile
+      args:
+        - PHP_VERSION=${PHP_VERSION:-8.3}
+        - POSTGRES_VERSION=${POSTGRES_VERSION:-16}
     container_name: "${PROJECT_NAME}_dev_drupal"
     ports:
       - "786:80"
@@ -31,7 +34,7 @@ services:
       com.docker.compose.project: ${PROJECT_NAME}
 
   postgres:
-    image: "postgres:16"
+    image: "postgres:${POSTGRES_VERSION}"
     container_name: "${PROJECT_NAME}_dev_postgres"
     environment:
       POSTGRES_USER: $DB_USER

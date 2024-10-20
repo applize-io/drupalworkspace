@@ -1,5 +1,9 @@
+# Set a build argument for PHP version and PostgreSQL version
+ARG PHP_VERSION=8.3
+ARG POSTGRES_VERSION=16
+
 # Use the official FrankenPHP image with PHP 8.3
-FROM dunglas/frankenphp:1-php8.3
+FROM dunglas/frankenphp:1-php${PHP_VERSION}
 
 # Install PostgreSQL client and required tools
 RUN apt-get update && \
@@ -7,7 +11,7 @@ RUN apt-get update && \
     echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     apt-get update && \
-    apt-get -y --no-install-recommends install postgresql-client-16 \
+    apt-get -y --no-install-recommends install postgresql-client-${POSTGRES_VERSION} \
     && apt-get clean
     
 # Install necessary PHP extensions and Composer in a single layer

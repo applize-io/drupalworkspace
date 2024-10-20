@@ -9,7 +9,7 @@ ENVIRONMENT ?= $(shell grep -s ENVIRONMENT .env | cut -d '=' -f 2 || echo "dev")
 DOCKERFILE=config/$(ENVIRONMENT)/Dockerfile
 COMPOSE_FILE=config/$(ENVIRONMENT)/compose.yml
 ENV_FILE=config/$(ENVIRONMENT)/.env
-PROJECT_NAME ?= $(shell grep -s PROJECT_NAME $(ENV_FILE) | cut -d '=' -f 2 || echo "drupalWorkSpace")
+#PROJECT_NAME ?= $(shell grep -s PROJECT_NAME $(ENV_FILE) | cut -d '=' -f 2 || echo "drupalWorkSpace")
 
 # Re-include environment-specific .env file to override variables
 ifneq ("$(wildcard $(ENV_FILE))","")
@@ -81,14 +81,24 @@ drush: ## Execute Drush commands inside the container
 drupal: ## Execute exec commands inside the container
 	@docker exec $(shell docker ps --filter name="^/$(PROJECT_NAME)_$(ENVIRONMENT)_drupal" --format "{{.ID}}") $(filter-out $@,$(MAKECMDGOALS))
 
-.PHONY: docker-push
-docker-push: ## Build and push Docker image to the registry
-	@echo "$(YELLOW)Logging into the Docker registry$(RESET)"
+.PHONY: login
+login: ## Login to the Docker registry for the production environment
+	@echo "$(YELLOW)Logging into the Docker registry $(DOCKER_REGISTRY)$(RESET)"
 	docker login $(DOCKER_REGISTRY)
+
+.PHONY: build
+build: ## Build the Docker image for the production environment
 	@echo "$(YELLOW)Building a new Docker image from the production Dockerfile$(RESET)"
-	docker build --cache-from=$(DOCKER_IMAGE) -t $(DOCKER_IMAGE) -f config/prod/Dockerfile .
-	@echo "$(YELLOW)Pushing the existing Docker image to the registry$(RESET)"
+	docker build --build-arg POSTGRES_VERSION=$(POSTGRES_VERSION) --build-arg PHP_VERSION=$(PHP_VERSION) -t $(DOCKER_IMAGE) -f config/prod/Dockerfile .
+
+.PHONY: push
+push: ## Push the built Docker image to the production registry
+	@echo "$(YELLOW)Pushing the Docker image $(DOCKER_IMAGE) to the registry$(RESET)"
 	docker push $(DOCKER_IMAGE)
+
+.PHONY: deploy
+deploy: login build push ## Login, build, and push Docker image to the production registry
+	@echo "$(YELLOW)Docker image successfully built and pushed to $(DOCKER_REGISTRY)$(RESET)"
 
 .PHONY: db-export
 db-export: ## Export the database to a specified path on the local machine
@@ -116,6 +126,8 @@ info: ## Display the current environment variables
 	@echo "Compose file: $(COMPOSE_FILE)"
 	@echo "Dockerfile: $(DOCKERFILE)"
 	@echo "Env file: $(ENV_FILE)"
+	@echo "PHP version: $(PHP_VERSION)"
+	@echo "PostgreSQL version: $(POSTGRES_VERSION)"
 
 .PHONY: help
 help: ## Display available make targets with details

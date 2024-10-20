@@ -210,9 +210,9 @@ Before sending your project to the repository and enabling the continuous deploy
    Provide the database information, as well as the registry and Docker image in the `config/prod/.env` file. Ensure that your PostgreSQL database is accessible from the outside.
 
 5. **Build and Push the Docker Image**
-   Open a terminal at the root of the project and run the following command to build and push the project image to the configured Docker registry:
+   Open a terminal at the root of the project and run the following command to login, build and push the project image to the configured Docker registry:
    ```bash
-   make docker-push
+   make deploy
    ```
    Enter the login credentials when prompted.
 
@@ -310,7 +310,7 @@ In our context, the term "production" is used for the sake of simplicity and con
 
 ## Available Commands
 
-All commands from `drupalWorkSpace` are available in both development and production modes, except for the `make docker-push` command, which is only available in production mode, and the `make project` command, which is only available in development mode.
+All commands from `drupalWorkSpace` are available in both development and production modes, except for the `make push` and `make deploy` command, which are only available in production mode, and the `make project` command, which is only available in development mode.
 
 **1. make check**
 Checks if Docker and Docker Compose are installed on your system.
@@ -394,14 +394,35 @@ make drupal ls /opt/
 ```
 In this example, the `ls /opt/` command is executed inside the Drupal container. You can replace this with any other system command.
 
-**12. make docker-push**
-Builds and pushes the Docker image to the registry.
+**12. `make login`**  
+Logs into the Docker registry.
 
 ```bash
-make docker-push
+make login
 ```
 
-**13. make db-export EXPORT_PATH=<path>**
+**13. `make build`**  
+Builds the Docker image for the production environment.
+
+```bash
+make build
+```
+
+**14. `make push`**  
+Pushes the built production Docker image to the Docker registry. This step makes the image available for deployment.
+
+```bash
+make push
+```
+
+**15. `make deploy`**  
+Logs in, builds, and pushes the Docker image to the registry for the production environment.
+
+```bash
+make deploy
+```
+
+**16. make db-export EXPORT_PATH=<path>**
 Exports the database to a specified local path.
 
 ```bash
@@ -410,14 +431,14 @@ make db-export EXPORT_PATH=./backups/my_database.sql
 
 In this example, the database is exported to `./backups/my_database.sql`. Make sure to specify the path where you want the export to be saved.
 
-**14. make clean**
+**17. make clean**
 Removes unused Docker resources (containers, images, volumes, networks).
 
 ```bash
 make clean
 ```
 
-**15. make info**
+**18. make info**
 Displays the current environment variables.
 
 ```bash
@@ -431,8 +452,10 @@ Project Name: drupalWorkSpace
 Compose file: config/dev/compose.yml   
 Dockerfile: config/dev/Dockerfile   
 Env file: config/dev/.env   
+PHP version: 8.2   
+PostgreSQL version: 14   
 
-**16. make help**
+**19. make help**
 Displays a list of all available targets in the `Makefile`, with a brief description.
 
 ```bash
