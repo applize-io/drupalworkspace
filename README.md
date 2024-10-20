@@ -312,49 +312,49 @@ In our context, the term "production" is used for the sake of simplicity and con
 
 All commands from `drupalWorkSpace` are available in both development and production modes, except for the `make push` and `make deploy` command, which are only available in production mode, and the `make project` command, which is only available in development mode.
 
-**1. make check**
+**1. make check**   
 Checks if Docker and Docker Compose are installed on your system.
 
 ```bash
 make check
 ```
 
-**2. make reset**
+**2. make reset**   
 Stops, removes, rebuilds, and restarts the containers for the current environment with the latest changes.
 
 ```bash
 make reset
 ```
 
-**3. make up**
+**3. make up**   
 Stops and removes the existing containers, then starts the containers in the current environment with the latest changes without rebuilding the images.
 
 ```bash
 make up
 ```
 
-**4. make project**
+**4. make project**   
 Initialize a new Drupal installation in its latest version within the `drupal/` directory located at the root of the project.
 
 ```bash
 make project
 ```
 
-**5. make start**
+**5. make start**   
 Starts the containers for the current environment without rebuilding the images.
 
 ```bash
 make start
 ```
 
-**6. make stop**
+**6. make stop**   
 Stops the containers for the current environment.
 
 ```bash
 make stop
 ```
 
-**7. make prune**
+**7. make prune**   
 Removes containers and volumes for the current environment.
 
 ```bash
@@ -368,14 +368,14 @@ Displays logs of the running containers.
 make logs
 ```
 
-**9. make ps**
+**9. make ps**   
 Lists the running containers for the current environment.
 
 ```bash
 make ps
 ```
 
-**10. make drush**
+**10. make drush**   
 Executes a Drush command inside the Drupal container.
 
 Example usage:
@@ -385,7 +385,7 @@ make drush status
 
 In this example, the `status` command is passed to Drush inside the container. You can replace `status` with any Drush command of your choice.
 
-**11. make drupal**
+**11. make drupal**   
 Executes a command inside the Drupal container.
 
 Example usage:
@@ -401,8 +401,7 @@ Logs into the Docker registry.
 make login
 ```
 
-**13. `make build`**  
-Builds the Docker image for the production environment.
+**13. `make build`** Builds the Docker image for the production environment.
 
 ```bash
 make build
@@ -422,7 +421,7 @@ Logs in, builds, and pushes the Docker image to the registry for the production 
 make deploy
 ```
 
-**16. make db-export EXPORT_PATH=<path>**
+**16. make db-export EXPORT_PATH=<path>**   
 Exports the database to a specified local path.
 
 ```bash
@@ -431,14 +430,14 @@ make db-export EXPORT_PATH=./backups/my_database.sql
 
 In this example, the database is exported to `./backups/my_database.sql`. Make sure to specify the path where you want the export to be saved.
 
-**17. make clean**
+**17. make clean**   
 Removes unused Docker resources (containers, images, volumes, networks).
 
 ```bash
 make clean
 ```
 
-**18. make info**
+**18. make info**   
 Displays the current environment variables.
 
 ```bash
@@ -455,7 +454,7 @@ Env file: config/dev/.env
 PHP version: 8.2   
 PostgreSQL version: 14   
 
-**19. make help**
+**19. make help**   
 Displays a list of all available targets in the `Makefile`, with a brief description.
 
 ```bash
